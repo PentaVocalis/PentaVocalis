@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Penta Vocalis</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#0f0f12;color:#fff;line-height:1.6}
+header{position:fixed;top:0;width:100%;background:#5b1222;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;z-index:1000;border-bottom:1px solid #7a2036}
+header h1{font-size:1.4rem;letter-spacing:2px;display:flex;align-items:center;gap:12px}.logo{width:54px;height:54px;object-fit:contain;border-radius:8px;background:#fff;padding:2px}
+nav a{color:#fff;text-decoration:none;margin-left:22px;font-size:.95rem}
+nav a:hover{color:#f0d3a0}
+section{padding:100px 8% 70px}
+.hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(rgba(0,0,0,.28),rgba(0,0,0,.62)),url('/mnt/data/Penta Herobild.png') center center/cover}
+.hero-box{max-width:760px}
+.hero h2{font-size:3.3rem;margin-bottom:18px}
+.hero p{font-size:1.15rem;color:#ddd;margin-bottom:24px}
+.btn{display:inline-block;padding:14px 26px;background:#c9a96e;color:#111;text-decoration:none;border-radius:30px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.card{background:#17171c;padding:26px;border-radius:18px;border:1px solid #27272e}
+h3{font-size:2rem;margin-bottom:24px;color:#c9a96e}
+ul{padding-left:20px}
+li{margin-bottom:10px}
+.events .card{border-left:4px solid #c9a96e}
+.social a{display:inline-block;margin:10px 14px 0 0;color:#fff;text-decoration:none;padding:10px 16px;background:#1f1f26;border-radius:25px}
+form{display:grid;gap:14px;max-width:700px}
+input,textarea{padding:14px;border:none;border-radius:10px;background:#1b1b20;color:#fff}
+textarea{min-height:160px;resize:vertical}
+button{padding:14px;border:none;border-radius:30px;background:#c9a96e;color:#111;font-weight:700;cursor:pointer}
+footer{padding:40px 8%;background:#09090c;color:#bbb}
+small{display:block;margin-top:8px}
+@media(max-width:800px){nav{display:none}.hero h2{font-size:2.3rem}}
+</style>
+</head>
+<body>
+<header>
+<h1><img src="/mnt/data/P E N T A (3).png" alt="Penta Vocalis Logo" class="logo">PENTA VOCALIS</h1>
+<nav>
+<a href="#start">Startseite</a>
+<a href="#repertoire">Repertoire</a>
+<a href="#events">Events</a>
+<a href="#social">Social Media</a>
+<a href="#booking">Buchung</a>
+<a href="#impressum">Impressum</a>
+</nav>
+</header>
+<section class="hero" id="start">
+<div class="hero-box">
+<h2>Vokalkunst mit Präzision, Ausdruck und Klangtiefe.</h2>
+<p>Penta Vocalis ist ein junges Vokalensemble aus Regensburg. Gegründet 2024. Die fünf Sänger verbinden klassische Chormusik, geistliche Werke und moderne Klangwelten auf hohem Niveau.</p>
+<a class="btn" href="#booking">Ensemble anfragen</a>
+</div>
+</section>
+<section>
+<h3>Über das Ensemble</h3>
+<div class="grid">
+<div class="card"><p>Die Mitglieder sind musikalisch geprägt durch die Regensburger Domspatzen und widmen sich eigenständig der Vokalkammermusik.</p></div>
+<div class="card"><p>Auftritte fanden bereits regional und überregional statt, unter anderem im Kloster Seeon sowie in der Klosterkirche Frauenwörth.</p></div>
+<div class="card"><p>Künstlerische Impulse erhielt das Ensemble unter anderem von Markus Zapp, Mitgründer von Singer Pur.</p></div>
+</div>
+</section>
+<section id="repertoire">
+<h3>Repertoire</h3>
+<div class="grid">
+<div class="card"><ul><li>Renaissance und Frühbarock</li><li>Tallis</li><li>Orlando di Lasso</li><li>Heinrich Schütz</li></ul></div>
+<div class="card"><ul><li>Romantik</li><li>Schubert</li><li>Mendelssohn</li><li>Grieg</li><li>Reger</li></ul></div>
+<div class="card"><ul><li>Moderne und Crossover</li><li>Billy Joel</li><li>geistliche Programme</li><li>thematische Konzertabende</li></ul></div>
+</div>
+</section>
+<section class="events" id="events">
+<h3>Nächste Aufführungen</h3>
+<div class="grid">
+<div class="card"><strong>PAX</strong><br>06.09.2026, 19:00 Uhr<br>Kirche St. Michael, Neutraubling</div>
+<div class="card"><strong>Beyond Love</strong><br>weitere Termine auf Anfrage</div>
+<div class="card"><strong>Private Events</strong><br>Hochzeiten, Empfänge, Kirchenmusik, Kulturveranstaltungen</div>
+</div>
+</section>
+<section class="social" id="social">
+<h3>Social Media</h3>
+<p>Folgen Sie Penta Vocalis auf den Kanälen des Ensembles.</p>
+<a href="https://www.youtube.com/@Penta-Vocalis_vocalensemble" target="_blank">YouTube</a>
+<a href="https://www.instagram.com/vokalensemble_penta_vocalis/" target="_blank">Instagram</a>
+</section>
+<section id="booking">
+<h3>Ensemble buchen</h3>
+<p>Sie planen ein Konzert, eine Hochzeit, einen Festakt oder eine kulturelle Veranstaltung. Schreiben Sie uns direkt.</p>
+<form action="mailto:pentavocalis@gmail.com" method="post" enctype="text/plain">
+<input type="text" placeholder="Name" required>
+<input type="email" placeholder="E-Mail" required>
+<input type="text" placeholder="Anlass / Ort / Datum">
+<textarea placeholder="Ihre Nachricht"></textarea>
+<button type="submit">Anfrage senden</button>
+</form>
+</section>
+<section id="impressum">
+<h3>Impressum</h3>
+<p>Penta Vocalis<br>E-Mail: pentavocalis@gmail.com<br>Telefon: +49 (0)176 56892691</p>
+</section>
+<footer>
+<p>Penta Vocalis. Professioneller Webauftritt für Konzertanfragen und Veranstaltungen.</p>
+<small>Inhalte basieren auf öffentlich verfügbaren Informationen.</small>
+</footer>
+</body>
+</html>
