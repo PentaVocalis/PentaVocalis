@@ -608,28 +608,34 @@
       </div>
     </section>
 
-    <section class="section" id="ueberblick">
-      <div class="container">
-        <span class="eyebrow">Überblick</span>
-        <h2 class="section-title">Wer sind wir?</h2>
-        <p class="section-copy">Penta Vocalis ist ein fünfköpfiges Vokalensemble, gegründet 2024 in Regensburg</p>
+    
 
-        <div class="grid info-grid">
-          <article class="card intro-card">
-            <h3>Herkunft</h3>
-            <p>Alle Mitglieder des Ensembles sind aktive Sängerinnen und Sänger der Regensburger Domspatzen.</p>
-          </article>
-          <article class="card intro-card">
-            <h3>Was macht uns so besonders?</h3>
-            <p>Wir vereinen klassischen Ensemblegesang mit Lebhaftigkeit, Enthusiasmus und Freude am Singen.</p>
-          </article>
-          <article class="card intro-card">
-            <h3>Eigene Bildsprache</h3>
-            <p>Der Hintergrund nutzt eigens erzeugte Noten-PNGs, keine Stockbilder. So bleibt die Seite nah an eurer musikalischen Identität.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+<section class="section" id="ueberblick">
+  <div class="container">
+    <span class="eyebrow">Biografie</span>
+    <h2 class="section-title">Penta Vocalis</h2>
+
+    <p class="section-copy" style="max-width:900px">
+      Das Vokalensemble Penta Vocalis wurde 2024 gegründet. Die Mitglieder – Clara Brandscherdt, Konstantin Pöppl, Daniel Rist, Kassian Brandscherdt und Richard Wensel – sind aktive Schüler und Sänger der Regensburger Domspatzen und leben unabhängig von dieser Institution ihre Leidenschaft für Vokalkammermusik aus.
+    </p>
+
+    <button id="bio-toggle" style="margin-top:10px;padding:10px 18px;border-radius:999px;border:none;background:#d6b377;color:#1a0a11;font-weight:700;cursor:pointer">
+      Mehr anzeigen
+    </button>
+
+    <div id="bio-more" style="display:none;margin-top:20px">
+      <p class="section-copy" style="max-width:900px">
+        Das Ensemble etablierte sich bereits regional und durfte mehrfach auch überregional auftreten, unter anderem in der Klosterkirche Frauenwörth und im Kupfersaal Leipzig. Wertvolle künstlerische Impulse erhielt das junge, aufstrebende Ensemble von Markus Zapp, ehemaliges Gründungsmitglied von Singerpur, Mitgliedern des Ensembles Amarcord sowie von Stephen Connolly, ehemaliger Bass der King’s Singers. Darüber hinaus machten die Sänger Begegnungen mit Persönlichkeiten wie Prof. C. Bernd Sucher, José Carreras und Herbert Grönemeyer.
+      </p>
+
+      <p class="section-copy" style="max-width:900px">
+        Mit großer musikalischer Neugier und Begeisterung setzt sich das Ensemble zum Ziel, sein Repertoire stetig zu erweitern und neue künstlerische Wege zu beschreiten. Mit dem Programm „Beyond Love“ präsentiert das Ensemble die vielseitigen Facetten der Liebe. Neben weltlicher Sehnsucht und menschlicher Nähe findet auch die göttliche Liebe ihren musikalischen Ausdruck. Werke aus vier unterschiedlichen Epochen spannen dabei einen musikalischen Bogen, der den geschichtlichen und emotionalen Wandel der Liebe über Jahrhunderte hinweg erfahrbar macht.
+      </p>
+    </div>
+  </div>
+</section>
+
+
 
     <section class="section" id="ensemble">
       <div class="container">
@@ -783,31 +789,28 @@
     </div>
   </footer>
 
-  <script>
-    const toggle = document.querySelector('[data-menu-toggle]');
-    const menu = document.querySelector('[data-menu]');
+  
+<script>
+const btn = document.getElementById('bio-toggle');
+const more = document.getElementById('bio-more');
+const container = btn.parentElement;
 
-    if (toggle && menu) {
-      toggle.addEventListener('click', () => {
-        const isOpen = menu.classList.toggle('is-open');
-        toggle.setAttribute('aria-expanded', String(isOpen));
-      });
+if(btn && more){
+  btn.addEventListener('click', () => {
+    const open = more.style.display === 'block';
 
-      document.addEventListener('click', (event) => {
-        if (!menu.contains(event.target) && !toggle.contains(event.target)) {
-          menu.classList.remove('is-open');
-          toggle.setAttribute('aria-expanded', 'false');
-        }
-      });
-
-      menu.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => {
-          menu.classList.remove('is-open');
-          toggle.setAttribute('aria-expanded', 'false');
-        });
-      });
+    if(open){
+      more.style.display = 'none';
+      btn.textContent = 'Mehr anzeigen';
+      container.insertBefore(btn, more);
+    } else {
+      more.style.display = 'block';
+      btn.textContent = 'Weniger anzeigen';
+      container.appendChild(btn);
     }
-  </script>
+  });
+}
+</script>
+
 </body>
 </html>
-
