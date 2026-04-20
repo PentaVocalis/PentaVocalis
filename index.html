@@ -4,14 +4,561 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Penta Vocalis</title>
-  <meta name="description" content="Penta Vocalis ist ein junges Vokalensemble aus Regensburg. Konzertprogramme, Ensemblevorstellung und aktuelle Termine.">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Penta Vocalis ist ein Vokalensemble aus Regensburg. Programme, Ensemble, Konzerttermine und Kontakt auf einen Blick.">
+  <style>
+    :root{
+      --bg:#13080c;
+      --bg-soft:#1c0d13;
+      --panel:rgba(33,13,21,0.84);
+      --panel-2:rgba(255,255,255,0.05);
+      --primary:#5b1222;
+      --primary-soft:#7c2439;
+      --gold:#d6b377;
+      --text:#f7f2f3;
+      --muted:#dbcdd1;
+      --line:rgba(255,255,255,0.1);
+      --shadow:0 24px 60px rgba(0,0,0,0.34);
+      --radius:26px;
+      --max:1180px;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,Arial,Helvetica,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(124,36,57,0.26), transparent 34%),
+        radial-gradient(circle at 100% 0%, rgba(214,179,119,0.13), transparent 24%),
+        linear-gradient(180deg, #12070b 0%, #1a0b11 52%, #12070b 100%);
+      min-height:100vh;
+      overflow-x:hidden;
+      position:relative;
+    }
+
+    body::before,
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-1;
+      opacity:0.34;
+      background-repeat:no-repeat;
+    }
+
+    body::before{
+      background-image:
+        url("note-eighth.png"),
+        url("note-quarter.png"),
+        url("note-double.png");
+      background-size:220px, 180px, 250px;
+      background-position:
+        right 4% top 16%,
+        left -15px top 48%,
+        right 10% bottom 10%;
+    }
+
+    body::after{
+      opacity:0.18;
+      background-image:
+        url("note-quarter.png"),
+        url("note-eighth.png");
+      background-size:120px, 160px;
+      background-position:
+        left 9% top 14%,
+        right 30% top 62%;
+    }
+
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(var(--max), calc(100% - 32px));margin:0 auto}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(19,8,12,0.78);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(124,36,57,0.55);
+    }
+
+    .header-row{
+      min-height:84px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+
+    .brand img{
+      width:56px;
+      height:56px;
+      object-fit:contain;
+      background:rgba(255,255,255,0.96);
+      border-radius:14px;
+      padding:4px;
+      box-shadow:0 10px 28px rgba(0,0,0,0.18);
+    }
+
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+      line-height:1.05;
+    }
+
+    .brand-text strong{
+      font-size:0.96rem;
+      letter-spacing:0.18em;
+      white-space:nowrap;
+    }
+
+    .brand-text span{
+      margin-top:6px;
+      font-size:0.84rem;
+      color:var(--muted);
+      white-space:nowrap;
+    }
+
+    .menu-wrap{position:relative}
+    .menu-toggle{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      min-height:48px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(124,36,57,0.65);
+      background:rgba(255,255,255,0.05);
+      color:var(--text);
+      cursor:pointer;
+      font:inherit;
+      font-weight:700;
+      transition:0.25s ease;
+    }
+
+    .menu-toggle:hover{background:rgba(124,36,57,0.22)}
+    .menu-toggle span{display:grid;gap:4px}
+    .menu-toggle i{
+      display:block;
+      width:17px;
+      height:2px;
+      border-radius:2px;
+      background:#fff;
+    }
+
+    .menu{
+      position:absolute;
+      right:0;
+      top:calc(100% + 12px);
+      width:min(320px, calc(100vw - 24px));
+      display:grid;
+      gap:4px;
+      padding:10px;
+      background:rgba(19,8,12,0.96);
+      border:1px solid rgba(124,36,57,0.6);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(-8px);
+      transition:0.22s ease;
+    }
+
+    .menu.is-open{
+      opacity:1;
+      pointer-events:auto;
+      transform:translateY(0);
+    }
+
+    .menu a{
+      padding:13px 14px;
+      border-radius:14px;
+      color:var(--text);
+      transition:0.2s ease;
+    }
+
+    .menu a:hover{
+      background:rgba(124,36,57,0.24);
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(110deg, rgba(18,7,11,0.92) 12%, rgba(40,10,20,0.72) 48%, rgba(91,18,34,0.54) 100%),
+        url("hero.png") center center / cover no-repeat;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:auto 7% 12% auto;
+      width:min(32vw, 360px);
+      aspect-ratio:1;
+      clip-path:polygon(50% 0%, 97% 35%, 79% 91%, 21% 91%, 3% 35%);
+      background:linear-gradient(180deg, rgba(214,179,119,0.14), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.11);
+      backdrop-filter:blur(6px);
+    }
+
+    .hero-grid{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1.18fr 0.82fr;
+      gap:32px;
+      align-items:end;
+      padding:92px 0 74px;
+      position:relative;
+      z-index:1;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:16px;
+      font-size:0.84rem;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      color:#ecd9de;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:34px;
+      height:1px;
+      background:linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    h1{
+      font-size:clamp(2.8rem, 6vw, 5.4rem);
+      line-height:0.95;
+      max-width:10ch;
+      letter-spacing:-0.045em;
+      margin-bottom:20px;
+      text-wrap:balance;
+    }
+
+    .hero-copy p{
+      max-width:62ch;
+      color:var(--muted);
+      font-size:1.06rem;
+      margin-bottom:28px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .button,
+    .button-ghost{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:0 22px;
+      border-radius:999px;
+      font-weight:700;
+      transition:0.25s ease;
+    }
+
+    .button{
+      background:linear-gradient(135deg, var(--gold), #f0d29b);
+      color:#211016;
+      box-shadow:0 14px 28px rgba(214,179,119,0.22);
+    }
+
+    .button:hover{transform:translateY(-2px)}
+
+    .button-ghost{
+      border:1px solid rgba(255,255,255,0.14);
+      background:rgba(255,255,255,0.08);
+      color:#fff;
+    }
+
+    .button-ghost:hover{
+      background:rgba(124,36,57,0.28);
+    }
+
+    .hero-side{
+      display:grid;
+      gap:18px;
+      justify-items:end;
+    }
+
+    .glass-card{
+      width:min(100%, 360px);
+      background:linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+      border:1px solid rgba(255,255,255,0.12);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(16px);
+    }
+
+    .hero-logo-card{padding:28px}
+    .hero-logo-card img{
+      max-width:220px;
+      margin:0 auto;
+      filter:drop-shadow(0 14px 24px rgba(0,0,0,0.18));
+    }
+
+    .hero-info{padding:22px 24px}
+    .hero-info strong{
+      display:block;
+      font-size:1.18rem;
+      margin-bottom:6px;
+    }
+
+    .hero-info p{color:var(--muted)}
+
+    .section{
+      padding:96px 0;
+      position:relative;
+    }
+
+    .section + .section{
+      border-top:1px solid rgba(255,255,255,0.04);
+    }
+
+    .section-title{
+      font-size:clamp(2rem, 4.4vw, 3.2rem);
+      line-height:1.02;
+      margin-bottom:14px;
+      letter-spacing:-0.035em;
+      text-wrap:balance;
+    }
+
+    .section-copy{
+      max-width:760px;
+      margin-bottom:28px;
+      color:var(--muted);
+      font-size:1.02rem;
+    }
+
+    .grid{display:grid;gap:22px}
+    .info-grid{grid-template-columns:repeat(3, minmax(0, 1fr))}
+    .members{grid-template-columns:repeat(5, minmax(0, 1fr))}
+    .grid-2{grid-template-columns:repeat(2, minmax(0, 1fr))}
+    .konzerte-preview{grid-template-columns:1.05fr 0.95fr}
+
+    .card{
+      position:relative;
+      overflow:hidden;
+      padding:28px;
+      border-radius:var(--radius);
+      background:
+        linear-gradient(180deg, rgba(124,36,57,0.18), rgba(255,255,255,0.03));
+      border:1px solid rgba(124,36,57,0.42);
+      box-shadow:var(--shadow);
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      right:-44px;
+      bottom:-44px;
+      width:140px;
+      height:140px;
+      background:url("note-quarter.png") center/contain no-repeat;
+      opacity:0.09;
+      pointer-events:none;
+    }
+
+    .intro-card p,
+    .program-card p,
+    .contact-card p{color:var(--muted)}
+
+    .intro-card h3{
+      font-size:1.26rem;
+      margin-bottom:10px;
+    }
+
+    .member-card{
+      min-height:190px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding-top:84px;
+    }
+
+    .member-card::after{
+      content:"";
+      position:absolute;
+      top:24px;
+      left:24px;
+      width:58px;
+      aspect-ratio:1;
+      clip-path:polygon(50% 0%, 97% 35%, 79% 91%, 21% 91%, 3% 35%);
+      background:linear-gradient(180deg, rgba(214,179,119,0.42), rgba(124,36,57,0.40));
+      border:1px solid rgba(255,255,255,0.16);
+    }
+
+    .member-card h4{
+      font-size:1.16rem;
+      margin-bottom:7px;
+      line-height:1.2;
+    }
+
+    .member-role{
+      color:var(--gold);
+      font-size:0.84rem;
+      font-weight:800;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+    }
+
+    .program-card{
+      min-height:300px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:22px;
+    }
+
+    .program-card h3{
+      font-size:2rem;
+      margin:8px 0 12px;
+      letter-spacing:-0.03em;
+    }
+
+    .inline-link{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+    }
+
+    .inline-link::after{
+      content:"→";
+      transition:transform 0.18s ease;
+    }
+
+    .inline-link:hover::after{transform:translateX(4px)}
+
+    .konzerte-side{
+      background:
+        linear-gradient(135deg, rgba(124,36,57,0.32), rgba(214,179,119,0.08)),
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+    }
+
+    .event-list{list-style:none;display:grid;gap:14px}
+    .event-list li{
+      display:grid;
+      gap:6px;
+      padding:16px 0;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+    .event-list li:last-child{border-bottom:none}
+    .date{
+      color:var(--gold);
+      font-weight:800;
+      letter-spacing:0.06em;
+    }
+    .place{
+      font-size:1.08rem;
+      color:#fff;
+    }
+
+    .social-links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .social-links a{
+      min-height:48px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0 18px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(124,36,57,0.55);
+      transition:0.2s ease;
+    }
+
+    .social-links a:hover{
+      background:rgba(124,36,57,0.24);
+      transform:translateY(-2px);
+    }
+
+    .contact-box{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:18px;
+    }
+
+    .contact-panel strong{
+      display:block;
+      margin-bottom:8px;
+      color:var(--gold);
+      font-size:0.8rem;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+    }
+
+    .contact-panel a{
+      font-size:1.05rem;
+      color:#fff;
+      word-break:break-word;
+    }
+
+    .site-footer{
+      padding:28px 0 42px;
+      border-top:1px solid rgba(255,255,255,0.04);
+    }
+
+    .site-footer p{
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    @media (max-width:1080px){
+      .hero-grid,
+      .konzerte-preview{grid-template-columns:1fr}
+      .info-grid{grid-template-columns:1fr}
+      .members{grid-template-columns:repeat(3, minmax(0, 1fr))}
+      .hero-side{justify-items:start}
+      .glass-card{width:100%;max-width:none}
+    }
+
+    @media (max-width:760px){
+      .container{width:min(var(--max), calc(100% - 24px))}
+      .header-row{min-height:78px}
+      .brand img{width:50px;height:50px}
+      .brand-text strong{font-size:0.84rem}
+      .brand-text span{font-size:0.74rem}
+      .hero-grid{padding:74px 0 52px}
+      .section{padding:74px 0}
+      .members,
+      .grid-2,
+      .contact-box{grid-template-columns:1fr}
+      .card{padding:22px}
+      body::before{
+        background-size:150px, 120px, 170px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-row">
       <a class="brand" href="index.html" aria-label="Penta Vocalis Startseite">
-        <img class="brand-mark brand-logo-image" src="logo.png" alt="Penta Vocalis Logo">
+        <img src="logo.png" alt="Penta Vocalis Logo">
         <div class="brand-text">
           <strong>PENTA VOCALIS</strong>
           <span>Vokalensemble aus Regensburg</span>
@@ -24,13 +571,14 @@
           <span aria-hidden="true"><i></i><i></i><i></i></span>
         </button>
         <nav class="menu" id="site-menu" data-menu>
-          <a href="index.html#start">Start</a>
-          <a href="index.html#ensemble">Ensemble</a>
-          <a href="index.html#repertoire">Repertoire</a>
-          <a href="konzerttermine.html">Konzerttermine</a>
-          <a href="index.html#social">Social Media</a>
-          <a href="index.html#kontakt">Kontakt</a>
-          <a href="index.html#impressum">Impressum</a>
+          <a href="#start">Start</a>
+          <a href="#ueberblick">Überblick</a>
+          <a href="#ensemble">Ensemble</a>
+          <a href="#repertoire">Programme</a>
+          <a href="#konzerte-start">Konzerttermine</a>
+          <a href="#social">Social Media</a>
+          <a href="#kontakt">Kontakt</a>
+          <a href="#impressum">Impressum</a>
         </nav>
       </div>
     </div>
@@ -38,44 +586,78 @@
 
   <main>
     <section class="hero" id="start">
-      <div class="container hero-grid">
+      <div class="hero-grid">
         <div class="hero-copy">
-          <h1>Vokalkunst mit Präzision, Ausdruck und Klangtiefe.</h1>
-          <p>Penta Vocalis ist ein junges Vokalensemble aus Regensburg. Die fünf Sänger verbinden geistliche Musik, romantische Klangwelten und fein gearbeitete Vokalkammermusik in einer klaren, konzentrierten Form.</p>
+          <span class="eyebrow">Fünf Stimmen, ein Klang</span>
+          <h1>Vokalkunst mit Präsenz, Ruhe und klarem Profil.</h1>
+          <p>Penta Vocalis verbindet geistliche Musik, romantische Klangwelten und fein gearbeitete Vokalkammermusik. Die Seite übernimmt die klarere Unterteilung der älteren Version und verbindet sie mit einem moderneren Auftritt.</p>
           <div class="hero-actions">
-            <a class="button" href="konzerttermine.html">Konzerttermine ansehen</a>
-            <a class="button-ghost" href="#repertoire">Programme entdecken</a>
+            <a class="button" href="#konzerte-start">Konzerttermine</a>
+            <a class="button-ghost" href="#repertoire">Programme ansehen</a>
           </div>
         </div>
-        <div class="hero-art" aria-hidden="true"></div>
+
+        <div class="hero-side">
+          <div class="glass-card hero-logo-card">
+            <img src="logo.png" alt="Penta Vocalis Logo groß">
+          </div>
+          <div class="glass-card hero-info">
+            <strong>Regensburg</strong>
+            <p>Eigenständiges Vokalensemble mit Programmen zwischen geistlicher Musik, Romantik und moderner Vokalmusik.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ueberblick">
+      <div class="container">
+        <span class="eyebrow">Überblick</span>
+        <h2 class="section-title">Klar gegliedert. Ruhig aufgebaut. Moderner Eindruck.</h2>
+        <p class="section-copy">Die Seitenstruktur bleibt deutlich unterteilt wie in der älteren Version. Das Design wirkt jetzt hochwertiger, luftiger und stärker auf ein Ensemble zugeschnitten.</p>
+
+        <div class="grid info-grid">
+          <article class="card intro-card">
+            <h3>Klang und Herkunft</h3>
+            <p>Die Mitglieder sind musikalisch geprägt durch anspruchsvolle Ensemblearbeit und eine gemeinsame klangliche Vorstellung.</p>
+          </article>
+          <article class="card intro-card">
+            <h3>Auftritt und Räume</h3>
+            <p>Programme und Konzertorte erhalten mehr Gewicht. Die Startseite wirkt dadurch weniger technisch und deutlich repräsentativer.</p>
+          </article>
+          <article class="card intro-card">
+            <h3>Eigene Bildsprache</h3>
+            <p>Der Hintergrund nutzt eigens erzeugte Noten-PNGs, keine Stockbilder. So bleibt die Seite nah an eurer musikalischen Identität.</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <section class="section" id="ensemble">
       <div class="container">
-        <h2 class="section-title">Das Ensemble</h2>
-        <p class="section-copy">Penta Vocalis steht für fünf Stimmen, die als Ensemble einen gemeinsamen Klang formen. Die musikalische Arbeit verbindet stilistische Genauigkeit mit direktem Ausdruck. Die Fünferform des Logos wird in der Gestaltung bewusst aufgegriffen.</p>
+        <span class="eyebrow">Ensemble</span>
+        <h2 class="section-title">Die Stimmen von Penta Vocalis</h2>
+        <p class="section-copy">Fünf Stimmen, ein gemeinsamer Klang. Das Fünfeck des Logos kehrt in Karten und Formen wieder und gibt dem Auftritt mehr Wiedererkennung.</p>
 
         <div class="grid members">
           <article class="card member-card">
             <h4>Clara Brandscherdt</h4>
-            <p>Alt</p>
+            <p class="member-role">Alt</p>
           </article>
           <article class="card member-card">
             <h4>Konstantin Pöppl</h4>
-            <p>Tenor 1</p>
+            <p class="member-role">Tenor 1</p>
           </article>
           <article class="card member-card">
             <h4>Daniel Rist</h4>
-            <p>Tenor 2</p>
+            <p class="member-role">Tenor 2</p>
           </article>
           <article class="card member-card">
             <h4>Kassian Brandscherdt</h4>
-            <p>Bariton</p>
+            <p class="member-role">Bariton</p>
           </article>
           <article class="card member-card">
             <h4>Richard Wensel</h4>
-            <p>Bass</p>
+            <p class="member-role">Bass</p>
           </article>
         </div>
       </div>
@@ -83,26 +665,27 @@
 
     <section class="section" id="repertoire">
       <div class="container">
-        <h2 class="section-title">Repertoire und Programme</h2>
-        <p class="section-copy">Die Programme sind als eigene Seiten angelegt. So lässt sich später jedes Programm mit vollständigem Ablauf, Texten oder weiteren Informationen ergänzen.</p>
+        <span class="eyebrow">Programme</span>
+        <h2 class="section-title">Zwei Programme mit eigener Atmosphäre</h2>
+        <p class="section-copy">Die Unterteilung stammt aus der älteren Fassung. Die Gestaltung übernimmt den moderneren Stil mit stärkeren Flächen, mehr Tiefe und klaren Akzenten.</p>
 
         <div class="grid grid-2">
-          <article class="card highlight-card">
+          <article class="card program-card">
             <div>
               <span class="eyebrow">Programm</span>
               <h3>Beyond Love</h3>
-              <p>Werke von Tallis, Rossi, Grieg, Schütz, Schubert, Mendelssohn, Billy Joel und weiteren Komponisten. Schwerpunkt ist die Liebe in geistlicher und weltlicher Vokalmusik.</p>
+              <p>Liebe, Sehnsucht, Nähe und Erinnerung. Ein Bogen von Tallis bis Billy Joel, mit geistlicher und weltlicher Vokalmusik in feiner Balance.</p>
             </div>
-            <a class="inline-link" href="beyond-love.html">Zur Programmseite</a>
+            <a class="inline-link" href="beyond-love.html">Programm öffnen</a>
           </article>
 
-          <article class="card highlight-card">
+          <article class="card program-card">
             <div>
               <span class="eyebrow">Programm</span>
               <h3>PAX</h3>
-              <p>Eigenständige Programmseite für PAX. Das vollständige Programm lässt sich später direkt ergänzen, ohne die Startseite zu überladen.</p>
+              <p>Ein eigenständiges Programm mit ruhigem Profil. Die klare Trennung auf der Startseite hält den Auftritt geordnet und repräsentativ.</p>
             </div>
-            <a class="inline-link" href="pax.html">Zur Programmseite</a>
+            <a class="inline-link" href="pax.html">Programm öffnen</a>
           </article>
         </div>
       </div>
@@ -110,20 +693,31 @@
 
     <section class="section" id="konzerte-start">
       <div class="container">
-        <div class="card konzerte-card">
-          <h3>Konzerttermine</h3>
-          <p>Alle aktuellen Termine sind auf einer eigenen Seite gebündelt. Das macht die Startseite ruhiger und gibt mehr Platz für künftige Konzerte.</p>
-          <div class="hero-actions" style="margin-top:18px">
-            <a class="button" href="konzerttermine.html">Alle Konzerttermine</a>
-          </div>
+        <div class="grid konzerte-preview">
+          <article class="card konzerte-side">
+            <span class="eyebrow">Live</span>
+            <h2 class="section-title">Konzerttermine</h2>
+            <p class="section-copy">Öffentliche Termine stehen sichtbar auf der Seite und lassen sich später leicht auf eine Unterseite erweitern.</p>
+            <a class="button" href="konzerttermine.html">Alle Termine</a>
+          </article>
+
+          <article class="card">
+            <ul class="event-list">
+              <li>
+                <span class="date">06.09.2026</span>
+                <span class="place">Kirche St. Michael, Neutraubling</span>
+              </li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
 
     <section class="section" id="social">
       <div class="container">
-        <h2 class="section-title">Social Media</h2>
-        <p class="section-copy">Folgen Sie Penta Vocalis auf den offiziellen Kanälen des Ensembles.</p>
+        <span class="eyebrow">Social Media</span>
+        <h2 class="section-title">Aktuelle Einblicke</h2>
+        <p class="section-copy">Penta Vocalis auf YouTube und Instagram.</p>
         <div class="social-links">
           <a href="https://www.youtube.com/@Penta-Vocalis_vocalensemble" target="_blank" rel="noopener noreferrer">YouTube</a>
           <a href="https://www.instagram.com/vokalensemble_penta_vocalis/" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -133,22 +727,35 @@
 
     <section class="section" id="kontakt">
       <div class="container">
-        <h2 class="section-title">Kontakt</h2>
-        <p class="section-copy">Für Konzertanfragen, Programme und Rückfragen erreichen Sie das Ensemble direkt.</p>
+        <span class="eyebrow">Kontakt</span>
+        <h2 class="section-title">Anfragen und Rückfragen</h2>
+        <p class="section-copy">Für Konzertanfragen, Programme und organisatorische Rückfragen.</p>
         <div class="card contact-box">
-          <div><strong>E-Mail</strong><br><a href="mailto:pentavocalis@gmail.com">pentavocalis@gmail.com</a></div>
-          <div><strong>Telefon</strong><br><a href="tel:+4917656892691">+49 176 56892691</a></div>
+          <div class="contact-panel">
+            <strong>E-Mail</strong>
+            <a href="mailto:pentavocalis@gmail.com">pentavocalis@gmail.com</a>
+          </div>
+          <div class="contact-panel">
+            <strong>Telefon</strong>
+            <a href="tel:+4917656892691">+49 176 56892691</a>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section" id="impressum">
       <div class="container">
-        <h2 class="section-title">Impressum</h2>
+        <span class="eyebrow">Impressum</span>
+        <h2 class="section-title">Penta Vocalis</h2>
         <div class="card contact-box">
-          <div><strong>Penta Vocalis</strong></div>
-          <div>E-Mail: <a href="mailto:pentavocalis@gmail.com">pentavocalis@gmail.com</a></div>
-          <div>Telefon: <a href="tel:+4917656892691">+49 176 56892691</a></div>
+          <div class="contact-panel">
+            <strong>E-Mail</strong>
+            <a href="mailto:pentavocalis@gmail.com">pentavocalis@gmail.com</a>
+          </div>
+          <div class="contact-panel">
+            <strong>Telefon</strong>
+            <a href="tel:+4917656892691">+49 176 56892691</a>
+          </div>
         </div>
       </div>
     </section>
@@ -160,6 +767,30 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const toggle = document.querySelector('[data-menu-toggle]');
+    const menu = document.querySelector('[data-menu]');
+
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        const isOpen = menu.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+          menu.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      menu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  </script>
 </body>
 </html>
