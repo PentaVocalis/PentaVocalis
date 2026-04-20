@@ -1,104 +1,165 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Penta Vocalis</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
-body{font-family:Arial,Helvetica,sans-serif;background:#0f0f12;color:#fff;line-height:1.6}
-header{position:fixed;top:0;width:100%;background:#5b1222;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;z-index:1000;border-bottom:1px solid #7a2036}
-header h1{font-size:1.4rem;letter-spacing:2px;display:flex;align-items:center;gap:12px}.logo{width:54px;height:54px;object-fit:contain;border-radius:8px;background:#fff;padding:2px}
-nav a{color:#fff;text-decoration:none;margin-left:22px;font-size:.95rem}
-nav a:hover{color:#f0d3a0}
-section{padding:100px 8% 70px}
-.hero{min-height:100vh;display:flex;align-items:center;background:linear-gradient(rgba(0,0,0,.28),rgba(0,0,0,.62)),url('/mnt/data/Penta Herobild.png') center center/cover}
-.hero-box{max-width:760px}
-.hero h2{font-size:3.3rem;margin-bottom:18px}
-.hero p{font-size:1.15rem;color:#ddd;margin-bottom:24px}
-.btn{display:inline-block;padding:14px 26px;background:#c9a96e;color:#111;text-decoration:none;border-radius:30px;font-weight:700}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
-.card{background:#17171c;padding:26px;border-radius:18px;border:1px solid #27272e}
-h3{font-size:2rem;margin-bottom:24px;color:#c9a96e}
-ul{padding-left:20px}
-li{margin-bottom:10px}
-.events .card{border-left:4px solid #c9a96e}
-.social a{display:inline-block;margin:10px 14px 0 0;color:#fff;text-decoration:none;padding:10px 16px;background:#1f1f26;border-radius:25px}
-form{display:grid;gap:14px;max-width:700px}
-input,textarea{padding:14px;border:none;border-radius:10px;background:#1b1b20;color:#fff}
-textarea{min-height:160px;resize:vertical}
-button{padding:14px;border:none;border-radius:30px;background:#c9a96e;color:#111;font-weight:700;cursor:pointer}
-footer{padding:40px 8%;background:#09090c;color:#bbb}
-small{display:block;margin-top:8px}
-@media(max-width:800px){nav{display:none}.hero h2{font-size:2.3rem}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Penta Vocalis</title>
+  <meta name="description" content="Penta Vocalis ist ein junges Vokalensemble aus Regensburg. Konzertprogramme, Ensemblevorstellung und aktuelle Termine.">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
-<h1><img src="/mnt/data/P E N T A (3).png" alt="Penta Vocalis Logo" class="logo">PENTA VOCALIS</h1>
-<nav>
-<a href="#start">Startseite</a>
-<a href="#repertoire">Repertoire</a>
-<a href="#events">Events</a>
-<a href="#social">Social Media</a>
-<a href="#booking">Buchung</a>
-<a href="#impressum">Impressum</a>
-</nav>
-</header>
-<section class="hero" id="start">
-<div class="hero-box">
-<h2>Vokalkunst mit Präzision, Ausdruck und Klangtiefe.</h2>
-<p>Penta Vocalis ist ein junges Vokalensemble aus Regensburg. Gegründet 2024. Die fünf Sänger verbinden klassische Chormusik, geistliche Werke und moderne Klangwelten auf hohem Niveau.</p>
-<a class="btn" href="#booking">Ensemble anfragen</a>
-</div>
-</section>
-<section>
-<h3>Über das Ensemble</h3>
-<div class="grid">
-<div class="card"><p>Die Mitglieder sind musikalisch geprägt durch die Regensburger Domspatzen und widmen sich eigenständig der Vokalkammermusik.</p></div>
-<div class="card"><p>Auftritte fanden bereits regional und überregional statt, unter anderem im Kloster Seeon sowie in der Klosterkirche Frauenwörth.</p></div>
-<div class="card"><p>Künstlerische Impulse erhielt das Ensemble unter anderem von Markus Zapp, Mitgründer von Singer Pur.</p></div>
-</div>
-</section>
-<section id="repertoire">
-<h3>Repertoire</h3>
-<div class="grid">
-<div class="card"><ul><li>Renaissance und Frühbarock</li><li>Tallis</li><li>Orlando di Lasso</li><li>Heinrich Schütz</li></ul></div>
-<div class="card"><ul><li>Romantik</li><li>Schubert</li><li>Mendelssohn</li><li>Grieg</li><li>Reger</li></ul></div>
-<div class="card"><ul><li>Moderne und Crossover</li><li>Billy Joel</li><li>geistliche Programme</li><li>thematische Konzertabende</li></ul></div>
-</div>
-</section>
-<section class="events" id="events">
-<h3>Nächste Aufführungen</h3>
-<div class="grid">
-<div class="card"><strong>PAX</strong><br>06.09.2026, 19:00 Uhr<br>Kirche St. Michael, Neutraubling</div>
-<div class="card"><strong>Beyond Love</strong><br>weitere Termine auf Anfrage</div>
-<div class="card"><strong>Private Events</strong><br>Hochzeiten, Empfänge, Kirchenmusik, Kulturveranstaltungen</div>
-</div>
-</section>
-<section class="social" id="social">
-<h3>Social Media</h3>
-<p>Folgen Sie Penta Vocalis auf den Kanälen des Ensembles.</p>
-<a href="https://www.youtube.com/@Penta-Vocalis_vocalensemble" target="_blank">YouTube</a>
-<a href="https://www.instagram.com/vokalensemble_penta_vocalis/" target="_blank">Instagram</a>
-</section>
-<section id="booking">
-<h3>Ensemble buchen</h3>
-<p>Sie planen ein Konzert, eine Hochzeit, einen Festakt oder eine kulturelle Veranstaltung. Schreiben Sie uns direkt.</p>
-<form action="mailto:pentavocalis@gmail.com" method="post" enctype="text/plain">
-<input type="text" placeholder="Name" required>
-<input type="email" placeholder="E-Mail" required>
-<input type="text" placeholder="Anlass / Ort / Datum">
-<textarea placeholder="Ihre Nachricht"></textarea>
-<button type="submit">Anfrage senden</button>
-</form>
-</section>
-<section id="impressum">
-<h3>Impressum</h3>
-<p>Penta Vocalis<br>E-Mail: pentavocalis@gmail.com<br>Telefon: +49 (0)176 56892691</p>
-</section>
-<footer>
-<p>Penta Vocalis. Professioneller Webauftritt für Konzertanfragen und Veranstaltungen.</p>
-</footer>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html" aria-label="Penta Vocalis Startseite">
+        <img class="brand-mark brand-logo-image" src="logo.png" alt="Penta Vocalis Logo">
+        <div class="brand-text">
+          <strong>PENTA VOCALIS</strong>
+          <span>Vokalensemble aus Regensburg</span>
+        </div>
+      </a>
+
+      <div class="menu-wrap">
+        <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="site-menu">
+          Menü
+          <span aria-hidden="true"><i></i><i></i><i></i></span>
+        </button>
+        <nav class="menu" id="site-menu" data-menu>
+          <a href="index.html#start">Start</a>
+          <a href="index.html#ensemble">Ensemble</a>
+          <a href="index.html#repertoire">Repertoire</a>
+          <a href="konzerttermine.html">Konzerttermine</a>
+          <a href="index.html#social">Social Media</a>
+          <a href="index.html#kontakt">Kontakt</a>
+          <a href="index.html#impressum">Impressum</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="start">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1>Vokalkunst mit Präzision, Ausdruck und Klangtiefe.</h1>
+          <p>Penta Vocalis ist ein junges Vokalensemble aus Regensburg. Die fünf Sänger verbinden geistliche Musik, romantische Klangwelten und fein gearbeitete Vokalkammermusik in einer klaren, konzentrierten Form.</p>
+          <div class="hero-actions">
+            <a class="button" href="konzerttermine.html">Konzerttermine ansehen</a>
+            <a class="button-ghost" href="#repertoire">Programme entdecken</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="section" id="ensemble">
+      <div class="container">
+        <h2 class="section-title">Das Ensemble</h2>
+        <p class="section-copy">Penta Vocalis steht für fünf Stimmen, die als Ensemble einen gemeinsamen Klang formen. Die musikalische Arbeit verbindet stilistische Genauigkeit mit direktem Ausdruck. Die Fünferform des Logos wird in der Gestaltung bewusst aufgegriffen.</p>
+
+        <div class="grid members">
+          <article class="card member-card">
+            <h4>Clara Brandscherdt</h4>
+            <p>Alt</p>
+          </article>
+          <article class="card member-card">
+            <h4>Konstantin Pöppl</h4>
+            <p>Tenor 1</p>
+          </article>
+          <article class="card member-card">
+            <h4>Daniel Rist</h4>
+            <p>Tenor 2</p>
+          </article>
+          <article class="card member-card">
+            <h4>Kassian Brandscherdt</h4>
+            <p>Bariton</p>
+          </article>
+          <article class="card member-card">
+            <h4>Richard Wensel</h4>
+            <p>Bass</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="repertoire">
+      <div class="container">
+        <h2 class="section-title">Repertoire und Programme</h2>
+        <p class="section-copy">Die Programme sind als eigene Seiten angelegt. So lässt sich später jedes Programm mit vollständigem Ablauf, Texten oder weiteren Informationen ergänzen.</p>
+
+        <div class="grid grid-2">
+          <article class="card highlight-card">
+            <div>
+              <span class="eyebrow">Programm</span>
+              <h3>Beyond Love</h3>
+              <p>Werke von Tallis, Rossi, Grieg, Schütz, Schubert, Mendelssohn, Billy Joel und weiteren Komponisten. Schwerpunkt ist die Liebe in geistlicher und weltlicher Vokalmusik.</p>
+            </div>
+            <a class="inline-link" href="beyond-love.html">Zur Programmseite</a>
+          </article>
+
+          <article class="card highlight-card">
+            <div>
+              <span class="eyebrow">Programm</span>
+              <h3>PAX</h3>
+              <p>Eigenständige Programmseite für PAX. Das vollständige Programm lässt sich später direkt ergänzen, ohne die Startseite zu überladen.</p>
+            </div>
+            <a class="inline-link" href="pax.html">Zur Programmseite</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="konzerte-start">
+      <div class="container">
+        <div class="card konzerte-card">
+          <h3>Konzerttermine</h3>
+          <p>Alle aktuellen Termine sind auf einer eigenen Seite gebündelt. Das macht die Startseite ruhiger und gibt mehr Platz für künftige Konzerte.</p>
+          <div class="hero-actions" style="margin-top:18px">
+            <a class="button" href="konzerttermine.html">Alle Konzerttermine</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="social">
+      <div class="container">
+        <h2 class="section-title">Social Media</h2>
+        <p class="section-copy">Folgen Sie Penta Vocalis auf den offiziellen Kanälen des Ensembles.</p>
+        <div class="social-links">
+          <a href="https://www.youtube.com/@Penta-Vocalis_vocalensemble" target="_blank" rel="noopener noreferrer">YouTube</a>
+          <a href="https://www.instagram.com/vokalensemble_penta_vocalis/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kontakt">
+      <div class="container">
+        <h2 class="section-title">Kontakt</h2>
+        <p class="section-copy">Für Konzertanfragen, Programme und Rückfragen erreichen Sie das Ensemble direkt.</p>
+        <div class="card contact-box">
+          <div><strong>E-Mail</strong><br><a href="mailto:pentavocalis@gmail.com">pentavocalis@gmail.com</a></div>
+          <div><strong>Telefon</strong><br><a href="tel:+4917656892691">+49 176 56892691</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="impressum">
+      <div class="container">
+        <h2 class="section-title">Impressum</h2>
+        <div class="card contact-box">
+          <div><strong>Penta Vocalis</strong></div>
+          <div>E-Mail: <a href="mailto:pentavocalis@gmail.com">pentavocalis@gmail.com</a></div>
+          <div>Telefon: <a href="tel:+4917656892691">+49 176 56892691</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Penta Vocalis. Vokalmusik, Programme und Konzerttermine.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
