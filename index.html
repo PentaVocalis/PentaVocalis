@@ -527,65 +527,6 @@
       font-size:0.95rem;
     }
 
-    .biography-toggle-wrap{
-      display:flex;
-      justify-content:flex-start;
-    }
-
-    .contact-form{
-      display:grid;
-      gap:12px;
-    }
-
-    .form-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:12px;
-    }
-
-    .compact-form-card{
-      margin-top:20px;
-    }
-
-    .contact-form input,
-    .contact-form textarea{
-      width:100%;
-      border:none;
-      outline:none;
-      padding:13px 14px;
-      border-radius:14px;
-      background:#1c0d13;
-      color:#fff;
-      font:inherit;
-    }
-
-    .contact-form input::placeholder,
-    .contact-form textarea::placeholder{
-      color:#cdbdc2;
-    }
-
-    .contact-form textarea{
-      min-height:120px;
-      resize:vertical;
-    }
-
-    .contact-form button{
-      justify-self:start;
-      padding:12px 18px;
-      border-radius:999px;
-      border:none;
-      background:#d6b377;
-      color:#1a0a11;
-      font:inherit;
-      font-weight:700;
-      cursor:pointer;
-    }
-
-    @media (max-width:1080px){
-      .members{grid-template-columns:repeat(2, minmax(0, 1fr))}
-    }
-
-
     @media (max-width:1080px){
       .hero-grid,
       .konzerte-preview{grid-template-columns:1fr}
@@ -596,81 +537,19 @@
     }
 
     @media (max-width:760px){
-      .container{width:min(var(--max), calc(100% - 20px))}
-      .header-row{
-        min-height:74px;
-        gap:10px;
-      }
-      .brand{
-        gap:10px;
-        min-width:0;
-      }
-      .brand img{width:46px;height:46px}
-      .brand-text strong{
-        font-size:0.78rem;
-        letter-spacing:0.14em;
-      }
-      .brand-text span{
-        font-size:0.7rem;
-        white-space:normal;
-      }
-      .menu{
-        width:min(290px, calc(100vw - 20px));
-      }
-      .menu a{
-        padding:12px 12px;
-      }
-      .hero{
-        min-height:auto;
-      }
-      .hero-grid{
-        padding:84px 0 44px;
-        gap:18px;
-      }
-      h1{
-        font-size:clamp(2.25rem, 10vw, 3.4rem);
-        max-width:12ch;
-      }
-      .hero-copy p,
-      .section-copy{
-        font-size:0.96rem;
-      }
-      .section{padding:62px 0}
+      .container{width:min(var(--max), calc(100% - 24px))}
+      .header-row{min-height:78px}
+      .brand img{width:50px;height:50px}
+      .brand-text strong{font-size:0.84rem}
+      .brand-text span{font-size:0.74rem}
+      .hero-grid{padding:74px 0 52px}
+      .section{padding:74px 0}
       .members,
       .grid-2,
-      .contact-box,
-      .form-grid{grid-template-columns:1fr}
-      .card{padding:20px}
-      .hero-logo-card{padding:20px}
-      .hero-info{padding:18px 18px}
-      .button,
-      .button-ghost{
-        min-height:48px;
-        padding:0 18px;
-        width:100%;
-      }
-      .hero-actions{
-        display:grid;
-        grid-template-columns:1fr;
-        width:100%;
-      }
-      .contact-form{
-        gap:10px;
-      }
-      .contact-form input,
-      .contact-form textarea{
-        padding:12px 13px;
-        border-radius:12px;
-      }
-      .contact-form textarea{
-        min-height:110px;
-      }
-      .contact-form button{
-        width:100%;
-        justify-self:stretch;
-      }
+      .contact-box{grid-template-columns:1fr}
+      .card{padding:22px}
       body::before{
-        background-size:120px, 100px, 130px;
+        background-size:150px, 120px, 170px;
       }
     }
   </style>
@@ -740,9 +619,9 @@
       Das Vokalensemble Penta Vocalis wurde 2024 gegründet. Die Mitglieder – Clara Brandscherdt, Konstantin Pöppl, Daniel Rist, Kassian Brandscherdt und Richard Wensel – sind aktive Schüler und Sänger der Regensburger Domspatzen und leben unabhängig von dieser Institution ihre Leidenschaft für Vokalkammermusik aus.
     </p>
 
-    <div class="biography-toggle-wrap"><button id="bio-toggle" style="margin-top:10px;padding:10px 18px;border-radius:999px;border:none;background:#d6b377;color:#1a0a11;font-weight:700;cursor:pointer">
+    <button id="bio-toggle" style="margin-top:10px;padding:10px 18px;border-radius:999px;border:none;background:#d6b377;color:#1a0a11;font-weight:700;cursor:pointer">
       Mehr anzeigen
-    </button></div>
+    </button>
 
     <div id="bio-more" style="display:none;margin-top:20px">
       <p class="section-copy" style="max-width:900px">
@@ -881,22 +760,23 @@
     </div>
   </div>
 
+<div class="card" style="margin-top:24px">
+  <form action="mailto:pentavocalis@gmail.com" method="post" enctype="text/plain" style="display:grid;gap:14px">
 
-<div class="card compact-form-card">
-  <form class="contact-form" action="mailto:pentavocalis@gmail.com" method="post" enctype="text/plain">
-    <div class="form-grid">
-      <input type="text" name="Name" placeholder="Name" required>
-      <input type="email" name="Email" placeholder="E-Mail" required>
-    </div>
+    <input type="text" name="Name" placeholder="Name" required style="padding:14px;border-radius:12px;border:none;background:#1c0d13;color:#fff">
 
-    <input type="text" name="Betreff" placeholder="Betreff, z. B. Konzertanfrage">
+    <input type="email" name="Email" placeholder="E-Mail" required style="padding:14px;border-radius:12px;border:none;background:#1c0d13;color:#fff">
 
-    <textarea name="Nachricht" placeholder="Ihre Nachricht" required></textarea>
+    <input type="text" name="Betreff" placeholder="Betreff (z. B. Konzertanfrage)" style="padding:14px;border-radius:12px;border:none;background:#1c0d13;color:#fff">
 
-    <button type="submit">Nachricht senden</button>
+    <textarea name="Nachricht" placeholder="Ihre Nachricht" required style="padding:14px;border-radius:12px;border:none;background:#1c0d13;color:#fff;min-height:140px"></textarea>
+
+    <button type="submit" style="padding:14px;border-radius:30px;border:none;background:#d6b377;color:#1a0a11;font-weight:700;cursor:pointer">
+      Nachricht senden
+    </button>
+
   </form>
 </div>
-
 </section>
 
 
